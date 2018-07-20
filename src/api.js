@@ -8,7 +8,7 @@ module.exports = {
 
 /* Loading thingy */
 document.onreadystatechange = function () {
-    var state = document.readyState
+    var state = document.readyState;
     if (state == 'interactive') {
         document.getElementById('contents').style.visibility="hidden";
     } else if (state == 'complete') {

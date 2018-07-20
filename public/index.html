@@ -7,20 +7,27 @@
 </head>
 <body>
 <div id="load"></div>
+
 <div id="contents">
     <form id="addMovies" method="post">
-        <label for="userAddMovies">Add yo movieh:</label>
-        <input type="text" id="userAddMovies">
+        <label for="userAddMovie">Add a movie:</label>
+        <input type="text" id="userAddMovie">
+
         <label for="one">1</label>
-        <input type="radio" name='userRating' id="one" value="1">
-        <label for="one">2</label>
-        <input type="radio" name='userRating' id="two" value="2">
-        <label for="one">3</label>
-        <input type="radio" name='userRating' id="three" value="3">
-        <label for="one">4</label>
-        <input type="radio" name='userRating' id="four" value="4">
-        <label for="one">5</label>
-        <input type="radio" name='userRating' id="five" value="5">
+        <input type="radio" name='userRating'  class ="userRating" id="one" value="1">
+
+        <label for="two">2</label>
+        <input type="radio" name='userRating' class ="userRating" id="two" value="2">
+
+        <label for="three">3</label>
+        <input type="radio" name='userRating' class ="userRating" id="three" value="3">
+
+        <label for="four">4</label>
+        <input type="radio" name='userRating' class ="userRating" id="four" value="4">
+
+        <label for="five">5</label>
+        <input type="radio" name='userRating'  class ="userRating" id="five" value="5">
+
         <button type="submit" value="submit" id="userSubmit">Submit</button>
     </form>
     <div id="movieList"></div>

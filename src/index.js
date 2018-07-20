@@ -14,3 +14,28 @@ const {getMovies} = require('./api.js');
     alert('Oh no! Something went wrong.\nCheck the console for details.');
     console.log(error);
   });
+
+
+
+    $("#userSubmit").click(function(event){
+      event.preventDefault();
+      let movieTitle = $("#userAddMovie").val();
+      let movieRating = $('input[name=userRating]:checked').val();
+      const newMovie = {title: movieTitle, rating: movieRating};
+      const url = "/api/movies";
+      const options = {
+        method: "POST",
+          headers: {
+          "Content-Type": "application/json",
+
+          },
+          body: JSON.stringify(newMovie),
+      };
+        fetch(url, options)
+            .then (getMovies + newMovie)
+            // .catch(/* handle errors */);
+      });
+
+
+
+
