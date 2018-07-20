@@ -5,8 +5,9 @@ const $ = require('jquery');
  */
 const {getMovies} = require('./api.js');
 
+
   getMovies().then((movies) => {
-    console.log('Here are all the movies:');
+    $("#moveList").append('Here are all the movies:'); //took out console log and tried to send to empty div
     movies.forEach(({title, rating, id}) => {
       console.log(`id#${id} - ${title} - rating: ${rating}`);
     });
@@ -37,5 +38,5 @@ const {getMovies} = require('./api.js');
       });
 
 
-
-
+//javascript should make a post request to /api/movies.
+//once you figure out how to get console info to the div, then aim the db to that div. then
