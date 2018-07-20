@@ -6,15 +6,24 @@ const $ = require('jquery');
 const {getMovies} = require('./api.js');
 
 
-  getMovies().then((movies) => {
-    $("#moveList").append('Here are all the movies:'); //took out console log and tried to send to empty div
-    movies.forEach(({title, rating, id}) => {
-      console.log(`id#${id} - ${title} - rating: ${rating}`);
-    });
-  }).catch((error) => {
-    alert('Oh no! Something went wrong.\nCheck the console for details.');
-    console.log(error);
-  });
+  const genMovie = () => {
+    getMovies().then((movies) => {
+          console.log('Here are all the movies:');
+         $("#movieList").html("");
+          movies.forEach(({title, rating, id}) => {
+              console.log(`id#${id} - ${title} - rating: ${rating}`);
+              // let html = `<div></div>`;
+              // html += `<h4>${title}</h4>`;
+              // html += `<h4>${rating}</h4>`;
+              // $("#movieList").html(html);
+              $("#movieList").append(`id#${id} - ${title} - rating: ${rating}`);
+          });
+      }).catch((error) => {
+          alert('Oh no! Something went wrong.\nCheck the console for details.');
+          console.log(error);
+      });
+  };
+  genMovie();
 
 
 
@@ -33,8 +42,13 @@ const {getMovies} = require('./api.js');
           body: JSON.stringify(newMovie),
       };
         fetch(url, options)
-            .then (getMovies + newMovie)
+            .then((response) => {
+              response.json();
+            })
             // .catch(/* handle errors */);
+            .then(() => {
+              genMovie();
+            });
       });
 
 
