@@ -8,15 +8,29 @@ const {getMovies} = require('./api.js');
 
   const genMovie = () => {
     getMovies().then((movies) => {
-          console.log('Here are all the movies:');
          $("#movieList").html("");
           movies.forEach(({title, rating, id}) => {
               console.log(`id#${id} - ${title} - rating: ${rating}`);
-              // let html = `<div></div>`;
-              // html += `<h4>${title}</h4>`;
-              // html += `<h4>${rating}</h4>`;
-              // $("#movieList").html(html);
-              $("#movieList").append(`id#${id} - ${title} - rating: ${rating}`);
+              $("#movieList").append(`<div><span>ID: ${id}</span><span> ${title}</span><span>rating: ${rating}</span><button id="editMovieButton">Edit</button><button type="button" class="deleteMovieButton">X</button></div>`);
+              $(".deleteMovieButton").click(function(event) {
+                  event.preventDefault();
+                  let movieID = $(this).parent().children().first().html();
+                  let url = "/api/movies/" + movieID;
+                  console.log(movieID);
+                  console.log(url);
+
+                  const options = {
+                      method: "DELETE"
+                  };
+                  fetch(url, options)
+                      .then((response) => {
+                          response.json();
+                      })
+                      // .catch(/* handle errors */);
+                      .then(() => {
+                          genMovie();
+                      });
+              });
           });
       }).catch((error) => {
           alert('Oh no! Something went wrong.\nCheck the console for details.');
@@ -25,9 +39,25 @@ const {getMovies} = require('./api.js');
   };
   genMovie();
 
+// $(".deleteMovieButton").click(function(event) {
+//     event.preventDefault();
+//
+//     let url = "/api/movies/1";
+//     const options = {
+//         method: "DELETE"
+//     };
+//     fetch(url, options)
+//         .then((response) => {
+//             response.json();
+//         })
+//         // .catch(/* handle errors */);
+//         .then(() => {
+//             genMovie();
+//         });
+// });
 
 
-    $("#userSubmit").click(function(event){
+  $("#userSubmit").click(function(event){
       event.preventDefault();
       let movieTitle = $("#userAddMovie").val();
       let movieRating = $('input[name=userRating]:checked').val();
@@ -52,5 +82,3 @@ const {getMovies} = require('./api.js');
       });
 
 
-//javascript should make a post request to /api/movies.
-//once you figure out how to get console info to the div, then aim the db to that div. then
