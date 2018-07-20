@@ -20,7 +20,6 @@ const {getMovies} = require('./api.js');
     $("#userSubmit").click(function(event){
       event.preventDefault();
       let movieTitle = $("#userAddMovie").val();
-
       let movieRating = $('input[name=userRating]:checked').val();
       const newMovie = {title: movieTitle, rating: movieRating};
       const url = "/api/movies";

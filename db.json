@@ -14,6 +14,11 @@
       "title": "Deadpool",
       "rating": "5",
       "id": 3
+    },
+    {
+      "title": "The Secret Life of Pets",
+      "rating": "5",
+      "id": 4
     }
   ]
 }
