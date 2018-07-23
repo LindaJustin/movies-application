@@ -11,7 +11,14 @@ const {getMovies} = require('./api.js');
           $("#movieList").html("");
           movies.forEach(({title, rating, id}) => {
               console.log(`id#${id} - ${title} - rating: ${rating}`);
-              $("#movieList").append(`<div>${title}&nbsp<span>rating: ${rating}</span>&nbsp<button class="editMovieButton" data-id="${id}">Edit</button>&nbsp<button type="button" class="deleteMovieButton" data-id="${id}">X</button></div>`);
+              $("#movieList").append(`<div class="movieCard">
+                                        <div class="movieTitleStyle">${title}&nbsp</div>    
+                                        <span class="ratingStyle">Rating: ${rating}</span>&nbsp
+                                        <div class="buttonses">
+                                            <button class="editMovieButton" data-id="${id}">Edit</button>&nbsp
+                                            <button type="button" class="deleteMovieButton" data-id="${id}">X</button>
+                                        </div>
+                                      </div>`);
           });
       });
   };
@@ -20,7 +27,6 @@ const {getMovies} = require('./api.js');
 //target the class of container so we can globally listen for the click
   $(".container").on("click", ".deleteMovieButton", function(event) {
       event.preventDefault();
-      // let movieID = $(this).parent().children().first().html();
       let movieID = $(this).attr("data-id");
       let url = "/api/movies/" + movieID;
       console.log(movieID);
@@ -110,5 +116,8 @@ $(".container").on("click", ".editMovieButton", function(event) {
 
             });
       });
+
+
+
 
 
